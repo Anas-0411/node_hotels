@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const mongoose = require("./database");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 app.use(express.json());
 app.use(bodyParser.json());
+const PORT = process.env.PORT || 3000;
 
 app.get("/", function (req, res) {
   return res.send("Welcome to Our Hotel!");
@@ -17,6 +19,6 @@ const menuRoutes = require("./routes/menuRoutes");
 app.use("/person", personRoutes);
 app.use("/menu", menuRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("listening on port 3000");
 });
